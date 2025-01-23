@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能起名助手</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>智能起名助手</h1>
+            <p>智能识别中英文名字，为您推荐最匹配的译名</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <form id="nameForm">
+                    <div class="input-group">
+                        <label for="inputName">请输入您的名字：</label>
+                        <input type="text" id="inputName" required placeholder="输入中文或英文名字">
+                        <p class="input-hint" id="inputHint">系统将自动识别您输入的语言</p>
+                    </div>
+                    <button type="submit" class="generate-btn" id="generateButton">生成译名</button>
+                </form>
+            </section>
+
+            <!-- 名字分析部分 -->
+            <section class="name-analysis" id="nameAnalysis" style="display: none;">
+                <h2>名字分析</h2>
+                <div class="analysis-content">
+                    <div class="analysis-item">
+                        <h3>来源</h3>
+                        <p class="origin"></p>
+                    </div>
+                    <div class="analysis-item">
+                        <h3>含义</h3>
+                        <p class="meaning"></p>
+                    </div>
+                    <div class="analysis-item">
+                        <h3>特点</h3>
+                        <p class="characteristics"></p>
+                    </div>
+                    <div class="analysis-item">
+                        <h3>文化背景</h3>
+                        <p class="cultural"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section" id="results">
+                <!-- 结果将动态插入这里 -->
+            </section>
+
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>正在生成名字，请稍候...</p>
+            </div>
+
+            <div id="error" class="error" style="display: none;">
+                <!-- 错误信息将在这里显示 -->
+            </div>
+        </main>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils/languageDetector.js"></script>
+    <script src="js/utils/nameAnalyzer.js"></script>
+    <script src="js/utils/nameMatcher.js"></script>
+    <script src="js/nameGenerator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

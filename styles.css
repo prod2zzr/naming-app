@@ -1,0 +1,207 @@
+/* Modern and Clean Design */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --background-color: #f5f6fa;
+    --card-background: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-radius: 8px;
+    --spacing-unit: 16px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+}
+
+header {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-unit);
+}
+
+.input-section {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.input-group {
+    margin-bottom: var(--spacing-unit);
+}
+
+label {
+    display: block;
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 0.75);
+    border: 2px solid #e1e8ed;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.input-hint {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.generate-btn {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 0.75);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.generate-btn:hover {
+    background-color: #357abd;
+}
+
+.generate-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 名字分析部分 */
+.name-analysis {
+    max-width: 800px;
+    margin: calc(var(--spacing-unit) * 2) auto;
+    padding: var(--spacing-unit);
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.name-analysis h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-unit);
+    text-align: center;
+}
+
+.analysis-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-unit);
+}
+
+.analysis-item {
+    padding: var(--spacing-unit);
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+
+.analysis-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    font-size: 1.1rem;
+}
+
+/* 结果部分 */
+.results-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.name-suggestion {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.name-suggestion h3 {
+    color: var(--primary-color);
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.name-suggestion p {
+    margin: calc(var(--spacing-unit) * 0.5) 0;
+    color: var(--text-secondary);
+}
+
+.name-suggestion .name {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* 加载动画 */
+.loading-spinner {
+    text-align: center;
+    margin: calc(var(--spacing-unit) * 2) 0;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    margin: 0 auto calc(var(--spacing-unit) * 0.5);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 错误提示 */
+.error {
+    max-width: 600px;
+    margin: var(--spacing-unit) auto;
+    padding: var(--spacing-unit);
+    background-color: #fee;
+    color: var(--accent-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: calc(var(--spacing-unit) * 0.5);
+    }
+
+    .analysis-content {
+        grid-template-columns: 1fr;
+    }
+}
