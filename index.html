@@ -9,40 +9,48 @@
 <body>
     <div class="container">
         <header>
-            <h1>智能起名助手</h1>
-            <p>智能识别中英文名字，为您推荐最匹配的译名</p>
+            <h2>
+                <div class="title-cn">智能起名助手</div>
+            </h2>
+            <p>
+                <span class="subtitle-cn">智能识别中英文名字，为您推荐最匹配的译名</span><br>
+                <span class="subtitle-en">Intelligently recommend the most suitable name</span>
+            </p>
         </header>
 
         <main>
             <section class="input-section">
                 <form id="nameForm">
                     <div class="input-group">
-                        <label for="inputName">请输入您的名字：</label>
+                        <label for="inputName" class="label-cn">请输入您的名字：</label>
+                        <label for="inputName" class="label-en" style="display: none;">Please enter your name:</label>
                         <input type="text" id="inputName" required placeholder="输入中文或英文名字">
                         <p class="input-hint" id="inputHint">系统将自动识别您输入的语言</p>
+                        <p class="detected-cn" style="display: none;">已识别到中文输入，将为您生成匹配的英文名</p>
+                        <p class="detected-en" style="display: none;">English name is detected, generating matching Chinese names.</p>
                     </div>
-                    <button type="submit" class="generate-btn" id="generateButton">生成译名</button>
+                    <button type="submit" class="generate-btn" id="generateButton">起名 Naming</button>
                 </form>
             </section>
 
             <!-- 名字分析部分 -->
             <section class="name-analysis" id="nameAnalysis" style="display: none;">
-                <h2>名字分析</h2>
+                <h2>名字分析 Analysis</h2>
                 <div class="analysis-content">
                     <div class="analysis-item">
-                        <h3>来源</h3>
+                        <h3>来源 Source</h3>
                         <p class="origin"></p>
                     </div>
                     <div class="analysis-item">
-                        <h3>含义</h3>
+                        <h3>含义 Content</h3>
                         <p class="meaning"></p>
                     </div>
                     <div class="analysis-item">
-                        <h3>特点</h3>
+                        <h3>特点 Feature</h3>
                         <p class="characteristics"></p>
                     </div>
                     <div class="analysis-item">
-                        <h3>文化背景</h3>
+                        <h3>文化 Culture</h3>
                         <p class="cultural"></p>
                     </div>
                 </div>

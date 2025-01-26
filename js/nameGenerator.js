@@ -5,43 +5,61 @@
 window.NameGenerator = {
     /**
      * 生成名字建议
-     * @param {string} name - 输入的名字
-     * @param {string} language - 输入的语言类型 ('chinese' 或 'english')
+     * @param {Array} messages - 包含系统提示和用户输入的消息数组
      * @returns {Object} 包含分析结果和名字建议的对象
      */
-    async generate(name, language) {
-        console.log(`开始名字生成流程: ${name}, 语言: ${language}`);
+    async generate(messages) {
+        console.log('开始名字生成流程，消息:', messages);
 
         try {
-            // 1. 分析名字
-            console.log('步骤1: 开始分析名字...');
-            const analysis = await window.NameAnalyzer.analyze(name, language);
-            console.log('名字分析完成:', analysis);
+            // 调用 API 获取结果
+            const response = await window.API_CONFIG.callAPI(messages);
             
-            // 2. 生成译名建议
-            console.log('步骤2: 开始生成译名...');
-            const suggestions = await window.NameMatcher.match(name, language, analysis);
-            console.log('译名生成完成:', suggestions);
-            
-            // 3. 返回结果
-            return {
-                analysis: analysis,
-                suggestions: suggestions
-            };
+            try {
+                // 检查响应格式
+                if (!response.choices || !response.choices[0] || !response.choices[0].message) {
+                    console.error('API响应格式不正确:', response);
+                    throw new Error('API响应格式不正确');
+                }
+
+                // 获取消息内容
+                const content = response.choices[0].message.content;
+                if (!content) {
+                    console.error('API响应内容为空');
+                    throw new Error('API响应内容为空');
+                }
+
+                // 提取JSON部分
+                let jsonStr = content.trim();
+                const jsonStart = jsonStr.indexOf('{');
+                const jsonEnd = jsonStr.lastIndexOf('}');
+                
+                if (jsonStart === -1 || jsonEnd === -1) {
+                    console.error('API返回内容中未找到JSON:', content);
+                    throw new Error('返回的数据格式不正确');
+                }
+                
+                jsonStr = jsonStr.substring(jsonStart, jsonEnd + 1);
+                console.log('解析的JSON字符串:', jsonStr);
+                
+                // 解析JSON结果
+                const result = JSON.parse(jsonStr);
+                
+                // 验证结果格式
+                if (!result.analysis || !result.suggestions || !Array.isArray(result.suggestions)) {
+                    console.error('API返回的数据结构不正确:', result);
+                    throw new Error('返回的数据格式不正确');
+                }
+
+                return result;
+            } catch (jsonError) {
+                console.error('JSON解析错误:', jsonError);
+                console.log('API返回的完整响应:', response);
+                throw new Error('生成结果格式有误，请重试');
+            }
         } catch (error) {
             console.error('名字生成过程出错:', error);
-            // 根据错误类型返回不同的错误信息
-            if (error.message.includes('API')) {
-                throw new Error('服务暂时不可用，请稍后重试');
-            } else if (error.message.includes('JSON') || error.message.includes('格式')) {
-                throw new Error('生成结果格式有误，请重试');
-            } else if (error.message.includes('分析失败')) {
-                throw new Error('名字分析失败，请稍后重试');
-            } else if (error.message.includes('生成失败')) {
-                throw new Error('译名生成失败，请稍后重试');
-            } else {
-                throw new Error('处理过程出错，请稍后重试');
-            }
+            throw error;
         }
     }
 };

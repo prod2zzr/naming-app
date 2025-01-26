@@ -36,9 +36,14 @@ header {
     margin-bottom: calc(var(--spacing-unit) * 2);
 }
 
-header h1 {
+header h2 {
     color: var(--primary-color);
     margin-bottom: var(--spacing-unit);
+}
+
+.subtitle-en {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .input-section {
@@ -73,6 +78,12 @@ input[type="text"]:focus {
 }
 
 .input-hint {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.detected-cn, .detected-en {
     margin-top: 8px;
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -139,17 +150,24 @@ input[type="text"]:focus {
     margin: 0 auto;
 }
 
+.results-section h2 {
+    color: var(--text-primary);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    font-size: 1.5rem;
+}
+
 .name-suggestion {
     background-color: var(--card-background);
     border-radius: var(--border-radius);
     padding: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
+    margin-top: calc(var(--spacing-unit) * 1.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .name-suggestion h3 {
     color: var(--primary-color);
     margin-bottom: calc(var(--spacing-unit) * 0.5);
+    padding-top: 0;
 }
 
 .name-suggestion p {
